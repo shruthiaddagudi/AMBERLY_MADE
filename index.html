@@ -1945,7 +1945,19 @@
     </div>
   </div>
 
-
+  <!-- ================================================================
+     WISHLIST OVERLAY
+     ================================================================ -->
+  <div class="am-overlay" id="wish-overlay" role="dialog" aria-modal="true" aria-label="Your Wishlist">
+    <div class="cart-modal" id="wish-modal">
+      <div class="cart-header">
+        <div class="cart-header-title">♡ Wishlist</div>
+        <button class="modal-close-btn" id="wish-close-btn" aria-label="Close wishlist">&#x2715;</button>
+      </div>
+      <div class="cart-items-list" id="wish-items-list"></div>
+      <div class="cart-empty-msg" id="wish-empty-msg" style="display:none;">Your wishlist is empty 🤍</div>
+    </div>
+  </div>
 
   <!-- Toast notification -->
   <div class="am-toast" id="am-toast"></div>
@@ -2036,7 +2048,7 @@
         products: [
           { id: 'ky1', name: 'Blossom Keychain', price: 99, img: 'https://i.pinimg.com/webp/1200x/4c/c3/87/4cc38703a1e83a1261b26b78d6309874.webp' },
           { id: 'ky2', name: 'Flower Keychain', price: 129, img: 'https://i.pinimg.com/736x/bb/5e/b0/bb5eb0ed4d048906b3ae9d1b3463ea0b.jpg' },
-          { id: 'ky3', name: 'Mini Bow Keychain', price: 169, img:'https://i.pinimg.com/736x/8c/5b/bb/8c5bbbbbaae9e23066ed40b62b1f100f.jpg' },
+          { id: 'ky3', name: 'Mini Bow Keychain', price: 169, img: 'https://i.pinimg.com/736x/8c/5b/bb/8c5bbbbbaae9e23066ed40b62b1f100f.jpg' },
           { id: 'ky4', name: 'Mini Flower Bouquet Keychain', price: 199, img: 'https://i.pinimg.com/webp/736x/b4/a9/2d/b4a92de2e895f3b80bab2bca776b485f.webp' },
           { id: 'ky5', name: 'Mini Octopus Keychain', price: 199, img: 'https://i.pinimg.com/736x/08/f8/20/08f8206435a8584f68c87d2d6f206f48.jpg' }
         ]
@@ -2111,7 +2123,7 @@
 
       const grid = document.getElementById('product-grid');
       grid.innerHTML = data.products.map(p => {
-        const isWished = wishlist.includes(p.id);
+        const isWished = wishlist.some(w => w.id === p.id);
         return `
       <div class="product-card">
         <img
@@ -2316,17 +2328,18 @@
     /* ============================================================
        FEATURE 3 — WISHLIST
        ============================================================ */
+    // wishlist stores full product objects: { id, name, price, img, category }
     let wishlist = [];
 
     function loadWishlist() {
       try {
-        const saved = localStorage.getItem('am_wishlist');
+        const saved = localStorage.getItem('am_wishlist_v2');
         wishlist = saved ? JSON.parse(saved) : [];
       } catch(e) { wishlist = []; }
     }
 
     function saveWishlist() {
-      try { localStorage.setItem('am_wishlist', JSON.stringify(wishlist)); } catch(e) {}
+      try { localStorage.setItem('am_wishlist_v2', JSON.stringify(wishlist)); } catch(e) {}
     }
 
     function updateWishBadge() {
@@ -2336,17 +2349,58 @@
       else badge.classList.remove('visible');
     }
 
+    function renderWishlistPanel() {
+      const list = document.getElementById('wish-items-list');
+      const empty = document.getElementById('wish-empty-msg');
+      if (wishlist.length === 0) {
+        list.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      list.innerHTML = wishlist.map(item => `
+        <div class="cart-item" data-wish-id="${item.id}">
+          <img class="cart-item-img" src="${item.img}" alt="${item.name}"
+            onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'" />
+          <div class="cart-item-details">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">&#8377;${item.price}</div>
+          </div>
+          <button class="cart-remove-btn" data-wish-remove="${item.id}" aria-label="Remove from wishlist" title="Remove">&times;</button>
+        </div>
+      `).join('');
+
+      // Remove listeners
+      list.querySelectorAll('[data-wish-remove]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pid = btn.dataset.wishRemove;
+          wishlist = wishlist.filter(w => w.id !== pid);
+          saveWishlist();
+          updateWishBadge();
+          renderWishlistPanel();
+          // Update heart icon in product grid if visible
+          const gridBtn = document.querySelector(`.wish-btn[data-product-id="${pid}"]`);
+          if (gridBtn) {
+            gridBtn.classList.remove('wished');
+            gridBtn.innerHTML = '&#9825;';
+            gridBtn.setAttribute('aria-label', 'Add to wishlist');
+          }
+          showToast('Removed from wishlist');
+        });
+      });
+    }
+
     function toggleWishlist(productId, productName, productPrice, productImg, categoryKey, btnEl) {
-      const idx = wishlist.indexOf(productId);
-      if (idx === -1) {
-        wishlist.push(productId);
+      const existingIdx = wishlist.findIndex(w => w.id === productId);
+      if (existingIdx === -1) {
+        wishlist.push({ id: productId, name: productName, price: productPrice, img: productImg, category: categoryKey });
         btnEl.classList.add('wished');
         btnEl.innerHTML = '&#9829;';
         btnEl.setAttribute('aria-label', 'Remove from wishlist');
         btnEl.setAttribute('title', 'Remove from wishlist');
         showToast('\u2665 Added to wishlist');
       } else {
-        wishlist.splice(idx, 1);
+        wishlist.splice(existingIdx, 1);
         btnEl.classList.remove('wished');
         btnEl.innerHTML = '&#9825;';
         btnEl.setAttribute('aria-label', 'Add to wishlist');
@@ -2360,6 +2414,16 @@
     /* ============================================================
        EVENT LISTENERS
        ============================================================ */
+
+    // Wishlist nav button
+    document.getElementById('wish-open-btn').addEventListener('click', () => {
+      renderWishlistPanel();
+      openOverlay('wish-overlay');
+    });
+    document.getElementById('wish-close-btn').addEventListener('click', () => closeOverlay('wish-overlay'));
+    document.getElementById('wish-overlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('wish-overlay')) closeOverlay('wish-overlay');
+    });
 
     // Catalogue card clicks
     document.getElementById('catalogue-grid').addEventListener('click', e => {
@@ -2386,6 +2450,7 @@
       if (e.key === 'Escape') {
         closeProductDetail();
         closeOverlay('cat-overlay');
+        closeOverlay('wish-overlay');
       }
     });
 
