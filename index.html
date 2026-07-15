@@ -419,7 +419,247 @@
       }
     }
 
-    /* CONTACT */
+    /* CUSTOM CREATIONS */
+    .custom-creations-section {
+      position: relative;
+      z-index: 1;
+      padding: 0 24px 72px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .custom-creations-section .glass-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .custom-creations-section .glass-panel::before {
+      content: '✦';
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      font-size: 1.5rem;
+      color: rgba(240, 213, 204, 0.18);
+      pointer-events: none;
+    }
+
+    .custom-creations-heading {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 18px;
+    }
+
+    .custom-creations-eyebrow {
+      font-size: 0.67rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .custom-creations-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: #fff;
+      line-height: 1.15;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .custom-creations-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--blush);
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+
+    .custom-creations-copy {
+      max-width: 760px;
+      margin: 0 auto 28px;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(240, 213, 204, 0.72);
+    }
+
+    .custom-creations-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 24px 0 28px;
+    }
+
+    .custom-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(240, 213, 204, 0.18);
+      border-radius: 18px;
+      padding: 22px 18px;
+      text-align: left;
+      min-height: 176px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.22s, border-color 0.22s, background 0.22s;
+    }
+
+    .custom-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(240, 213, 204, 0.4);
+    }
+
+    .custom-card-icon {
+      font-size: 1.28rem;
+      color: var(--gold);
+    }
+
+    .custom-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.02rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .custom-card-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(240, 213, 204, 0.72);
+    }
+
+    .custom-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .custom-order-btn {
+      margin-top: 4px;
+    }
+
+    .custom-note {
+      text-align: center;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: rgba(240, 213, 204, 0.6);
+      margin-top: 8px;
+    }
+
+    .custom-request-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 4, 4, 0.78);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .custom-request-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .custom-request-modal {
+      width: min(620px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: rgba(14, 4, 4, 0.96);
+      border: 1.5px solid rgba(240, 213, 204, 0.2);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.46);
+    }
+
+    .custom-request-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .custom-request-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .custom-request-close {
+      background: transparent;
+      border: none;
+      color: rgba(240, 213, 204, 0.75);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .custom-request-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .custom-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .custom-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .custom-field label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240, 213, 204, 0.7);
+      font-weight: 400;
+    }
+
+    .custom-field input,
+    .custom-field select,
+    .custom-field textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(240, 213, 204, 0.18);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .custom-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .custom-field input::placeholder,
+    .custom-field textarea::placeholder {
+      color: rgba(240, 213, 204, 0.5);
+    }
+
+    .custom-field input:focus,
+    .custom-field select:focus,
+    .custom-field textarea:focus {
+      border-color: rgba(240, 213, 204, 0.45);
+      box-shadow: 0 0 0 2px rgba(240, 213, 204, 0.12);
+    }
+
+    .custom-submit-btn {
+      width: 100%;
+      margin-top: 6px;
+    }
+
     .contact-section {
       position: relative;
       z-index: 1;
@@ -1608,31 +1848,95 @@
     /* ============================================================
      TOAST NOTIFICATION
      ============================================================ */
-    .am-toast {
+    .am-toast-container {
       position: fixed;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(14, 4, 4, 0.96);
-      border: 1px solid rgba(240, 213, 204, 0.25);
-      border-radius: 50px;
-      color: rgba(240, 213, 204, 0.9);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      padding: 11px 28px;
+      top: 20px;
+      right: 20px;
       z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       pointer-events: none;
-      white-space: nowrap;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      max-width: min(360px, calc(100vw - 24px));
     }
 
-    .am-toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .am-toast {
+      background: rgba(14, 4, 4, 0.96);
+      border: 1px solid rgba(240, 213, 204, 0.22);
+      border-left: 4px solid var(--teal);
+      border-radius: 16px;
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      padding: 12px 14px;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+      animation: toastIn 0.28s ease forwards;
+      overflow: hidden;
+    }
+
+    .am-toast.is-leaving {
+      animation: toastOut 0.24s ease forwards;
+    }
+
+    .am-toast.success { border-left-color: var(--teal); }
+    .am-toast.error { border-left-color: #b34749; }
+    .am-toast.info { border-left-color: var(--navy); }
+    .am-toast.warning { border-left-color: var(--gold); }
+
+    .am-toast .toast-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .am-toast .toast-message {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: rgba(240, 213, 204, 0.82);
+    }
+
+    @media (max-width: 600px) {
+      .am-toast-container {
+        top: 14px;
+        left: 12px;
+        right: 12px;
+        align-items: center;
+      }
+
+      .am-toast {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toastOut {
+      from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+      }
     }
 
     @media (max-width: 600px) {
@@ -2018,6 +2322,7 @@
     }
 
     @media (max-width: 600px) {
+
       .cart-drawer {
         width: 100%;
         border-left: none;
@@ -2158,6 +2463,46 @@
     </div>
   </div>
 
+  <section class="custom-creations-section" aria-label="Custom Creations">
+    <div class="glass-panel reveal">
+      <div class="custom-creations-heading">
+        <p class="custom-creations-eyebrow">✨ Custom Creations</p>
+        <h2 class="custom-creations-title">Can't Find Exactly What You're Looking For?</h2>
+        <p class="custom-creations-subtitle">Your Idea. Our Yarn. One Handmade Masterpiece.</p>
+      </div>
+      <p class="custom-creations-copy">
+        Some ideas are too special to fit inside a catalogue. Whether you dream of a unique crochet gift, a custom color combination, a favorite flower, or a completely new design, we'd love to bring your vision to life.
+        At AmberlyMade, every custom order is handcrafted with patience, creativity, and love—made just for you.
+      </p>
+      <div class="custom-creations-grid">
+        <div class="custom-card">
+          <div class="custom-card-icon">🎨</div>
+          <div class="custom-card-title">Choose Your Colors</div>
+          <div class="custom-card-text">Pick your favorite colors and combinations.</div>
+        </div>
+        <div class="custom-card">
+          <div class="custom-card-icon">💡</div>
+          <div class="custom-card-title">Share Your Idea</div>
+          <div class="custom-card-text">Send us your inspiration, sketch, or reference image.</div>
+        </div>
+        <div class="custom-card">
+          <div class="custom-card-icon">🎁</div>
+          <div class="custom-card-title">Perfect for Every Occasion</div>
+          <div class="custom-card-text">Create meaningful handmade gifts for birthdays, anniversaries, baby showers, or any special moment.</div>
+        </div>
+        <div class="custom-card">
+          <div class="custom-card-icon">🧶</div>
+          <div class="custom-card-title">Made Just for You</div>
+          <div class="custom-card-text">Every custom piece is handcrafted exclusively for your request.</div>
+        </div>
+      </div>
+      <div class="custom-actions">
+        <button class="btn-primary custom-order-btn" id="custom-open-btn">✨ Create My Custom Order</button>
+      </div>
+      <p class="custom-note">Every custom creation is uniquely handmade. Pricing may vary depending on the design, size, materials, and complexity.</p>
+    </div>
+  </section>
+
   <div class="about-strip" id="about">
     <div class="about-inner">
 
@@ -2192,6 +2537,71 @@
         <span class="story-photo-caption">Shruthi &amp; Deepthi ✦</span>
       </div>
 
+    </div>
+  </div>
+
+  <div class="custom-request-overlay" id="custom-request-overlay">
+    <div class="custom-request-modal" role="dialog" aria-modal="true" aria-label="Custom order request">
+      <div class="custom-request-header">
+        <div class="custom-request-title">Create Your Custom Order</div>
+        <button class="custom-request-close" id="custom-request-close" aria-label="Close">✕</button>
+      </div>
+      <form class="custom-request-form" id="custom-request-form">
+        <div class="custom-form-row">
+          <div class="custom-field">
+            <label for="custom-full-name">Full Name</label>
+            <input id="custom-full-name" name="fullName" type="text" placeholder="Your name" required />
+          </div>
+          <div class="custom-field">
+            <label for="custom-phone">Phone Number</label>
+            <input id="custom-phone" name="phone" type="tel" placeholder="+91 9876543210" required />
+          </div>
+        </div>
+        <div class="custom-form-row">
+          <div class="custom-field">
+            <label for="custom-email">Email (Optional)</label>
+            <input id="custom-email" name="email" type="email" placeholder="you@email.com" />
+          </div>
+          <div class="custom-field">
+            <label for="custom-product-type">Product Type</label>
+            <select id="custom-product-type" name="productType">
+              <option>Keychain</option>
+              <option>Bookmark</option>
+              <option>Claw Clip</option>
+              <option>Bag Charm</option>
+              <option>Phone Charm</option>
+              <option>Kindle Sleeve</option>
+              <option>Wall Hanging</option>
+              <option>Home Decor</option>
+              <option>Plushie</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="custom-field">
+          <label for="custom-colors">Preferred Colors</label>
+          <input id="custom-colors" name="colors" type="text" placeholder="e.g. Sage Green, Blush Pink" />
+        </div>
+        <div class="custom-field">
+          <label for="custom-idea">Describe Your Idea</label>
+          <textarea id="custom-idea" name="idea" placeholder="Tell us about your dream piece..."></textarea>
+        </div>
+        <div class="custom-form-row">
+          <div class="custom-field">
+            <label for="custom-upload">Upload Reference Image</label>
+            <input id="custom-upload" name="image" type="file" accept="image/*" />
+          </div>
+          <div class="custom-field">
+            <label for="custom-budget">Budget (Optional)</label>
+            <input id="custom-budget" name="budget" type="text" placeholder="Approx. budget" />
+          </div>
+        </div>
+        <div class="custom-field">
+          <label for="custom-date">Preferred Delivery Date (Optional)</label>
+          <input id="custom-date" name="date" type="date" />
+        </div>
+        <button class="btn-primary custom-submit-btn" type="submit">Send Custom Request</button>
+      </form>
     </div>
   </div>
 
@@ -2342,8 +2752,8 @@
     </div>
   </div>
 
-  <!-- Toast notification -->
-  <div class="am-toast" id="am-toast"></div>
+  <!-- Toast notifications -->
+  <div class="am-toast-container" id="am-toast"></div>
 
   <!-- ================================================================
      CART DRAWER
@@ -2564,13 +2974,51 @@
     /* ============================================================
        TOAST
        ============================================================ */
-    let toastTimer = null;
-    function showToast(msg) {
-      const toast = document.getElementById('am-toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+    function getToastIcon(type) {
+      switch (type) {
+        case 'error': return '✕';
+        case 'warning': return '⚠';
+        case 'info': return '✦';
+        default: return '✓';
+      }
+    }
+
+    function showToast(titleOrMessage, messageOrType, type = 'success') {
+      const container = document.getElementById('am-toast');
+      if (!container) return;
+
+      let title = '';
+      let message = '';
+      let toastType = type;
+
+      if (arguments.length === 1) {
+        message = titleOrMessage;
+      } else if (arguments.length === 2) {
+        if (['success', 'error', 'info', 'warning'].includes(messageOrType)) {
+          toastType = messageOrType;
+          message = titleOrMessage;
+        } else {
+          title = titleOrMessage;
+          message = messageOrType;
+        }
+      } else {
+        title = titleOrMessage;
+        message = messageOrType;
+        toastType = type;
+      }
+
+      const toast = document.createElement('div');
+      toast.className = `am-toast ${toastType}`;
+      toast.innerHTML = `
+        ${title ? `<div class="toast-title"><span>${getToastIcon(toastType)}</span>${title}</div>` : ''}
+        <div class="toast-message">${message}</div>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('is-leaving');
+        setTimeout(() => toast.remove(), 240);
+      }, 2800);
     }
 
     /* ============================================================
@@ -2739,6 +3187,7 @@
           swatchContainer.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
           swatch.classList.add('selected');
           document.getElementById('pd-color-name').textContent = swatch.dataset.colorName;
+          showToast('Color Selected', `Selected: ${swatch.dataset.colorName}`, 'success');
         });
       });
 
@@ -2755,7 +3204,15 @@
         pdCurrentPrice = parseInt(opt.dataset.price, 10);
         document.getElementById('pd-price').innerHTML = '&#8377;' + pdCurrentPrice;
         try { localStorage.setItem('am_scrunchie_size', pdSelectedSize); } catch(e) {}
+        showToast('Size Updated', `${pdSelectedSize} selected.`, 'success');
       });
+    });
+
+    document.getElementById('pd-custom-req').addEventListener('change', () => {
+      const value = document.getElementById('pd-custom-req').value.trim();
+      if (value) {
+        showToast('Customization Selected', 'Your custom color request has been saved.', 'success');
+      }
     });
 
     function closeProductDetail() {
@@ -2862,7 +3319,8 @@
             gridBtn.innerHTML = '&#9825;';
             gridBtn.setAttribute('aria-label', 'Add to wishlist');
           }
-          showToast('Removed from wishlist');
+          const removedItem = wishlist.find(w => w.id === pid);
+          showToast('Removed from Wishlist', `${removedItem ? removedItem.name : 'Item'} has been removed from your wishlist.`, 'success');
         });
       });
     }
@@ -2875,14 +3333,14 @@
         btnEl.innerHTML = '&#9829;';
         btnEl.setAttribute('aria-label', 'Remove from wishlist');
         btnEl.setAttribute('title', 'Remove from wishlist');
-        showToast('\u2665 Added to wishlist');
+        showToast('Added to Wishlist', `${productName} has been added to your wishlist.`, 'success');
       } else {
         wishlist.splice(existingIdx, 1);
         btnEl.classList.remove('wished');
         btnEl.innerHTML = '&#9825;';
         btnEl.setAttribute('aria-label', 'Add to wishlist');
         btnEl.setAttribute('title', 'Add to wishlist');
-        showToast('Removed from wishlist');
+        showToast('Removed from Wishlist', `${productName} has been removed from your wishlist.`, 'success');
       }
       saveWishlist();
       updateWishBadge();
@@ -2965,7 +3423,7 @@
         btn.classList.remove('added');
       }, 1800);
 
-      showToast('\u2713 Added to Cart');
+      showToast('Added to Cart', `${product.name} has been added to your cart.`, 'success');
     }
 
     function openCartDrawer() {
@@ -3050,6 +3508,7 @@
       saveCart();
       updateCartBadge();
       renderCartDrawer();
+      showToast('Cart Updated', 'Quantity updated successfully.', 'success');
     }
 
     function removeCartItem(index) {
@@ -3069,7 +3528,7 @@
         updateCartBadge();
         renderCartDrawer();
       }
-      showToast('Item removed from cart');
+      showToast('Removed from Cart', 'Item removed from your cart.', 'success');
     }
 
     /* ============================================================
@@ -3099,7 +3558,7 @@
       const notes = document.getElementById('co-notes').value.trim();
 
       if (!name || !phone || !address || !city || !state || !pin) {
-        showToast('Please fill in all required fields');
+        showToast('Required Fields', 'Please fill in all required fields.', 'warning');
         return;
       }
 
@@ -3131,7 +3590,7 @@
       updateCartBadge();
       document.getElementById('checkout-form').reset();
       closeCheckoutModal();
-      showToast('Order sent via WhatsApp!');
+      showToast('Order Sent', 'Your order has been sent via WhatsApp.', 'success');
     }
 
     /* ============================================================
@@ -3162,6 +3621,48 @@
     document.getElementById('cat-overlay').addEventListener('click', e => {
       if (e.target === document.getElementById('cat-overlay')) closeOverlay('cat-overlay');
     });
+
+    // Custom creations modal
+    const customOpenBtn = document.getElementById('custom-open-btn');
+    const customOverlay = document.getElementById('custom-request-overlay');
+    const customCloseBtn = document.getElementById('custom-request-close');
+    const customForm = document.getElementById('custom-request-form');
+
+    function openCustomRequestModal() {
+      if (customOverlay) {
+        customOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeCustomRequestModal() {
+      if (customOverlay) {
+        customOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (customOpenBtn) customOpenBtn.addEventListener('click', openCustomRequestModal);
+    if (customCloseBtn) customCloseBtn.addEventListener('click', closeCustomRequestModal);
+    if (customOverlay) {
+      customOverlay.addEventListener('click', e => {
+        if (e.target === customOverlay) closeCustomRequestModal();
+      });
+    }
+    if (customForm) {
+      customForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const fullName = document.getElementById('custom-full-name').value.trim();
+        const phone = document.getElementById('custom-phone').value.trim();
+        if (!fullName || !phone) {
+          showToast('Required Fields', 'Please add your name and phone number.', 'warning');
+          return;
+        }
+        customForm.reset();
+        closeCustomRequestModal();
+        showToast('Custom Request Sent', 'Thank you for sharing your idea. We will review your request and contact you shortly to discuss your handmade creation.', 'success');
+      });
+    }
 
     // Product detail overlay — close
     document.getElementById('pd-close-btn').addEventListener('click', closeProductDetail);
