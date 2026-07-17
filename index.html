@@ -2373,7 +2373,7 @@
       border: none;
       cursor: pointer;
       padding: 8px;
-      z-index: 101;
+      z-index: 10000;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -2464,7 +2464,7 @@
         transform: translateY(-100%);
         opacity: 0;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
-        z-index: 99;
+        z-index: 9999;
         pointer-events: none;
       }
 
@@ -2495,6 +2495,11 @@
       .nav-links li:nth-child(4),
       .nav-links li:nth-child(5) {
         display: none;
+      }
+
+      /* Remove border from the last visible nav item (Contact = li 3) */
+      .nav-links li:nth-child(3) {
+        border-bottom: none;
       }
 
       /* Show mobile actions row (wishlist + cart always visible in nav bar) */
@@ -3742,8 +3747,8 @@
           { id: 'hd6', name: 'Cozy Home Wall Hanging', price: 499, img: 'https://i.pinimg.com/736x/10/8d/e3/108de3608ee20a95d91ae81b8fbe3921.jpg' }
         ]
       },
-      'large-scrunchie': {
-        title: 'Large Scrunchie',
+      'scrunchie': {
+        title: 'Scrunchie',
         products: [
           { id: 'ls1', name: 'Heart Petal Scrunchie', price: 199, img: 'https://i.pinimg.com/736x/a5/07/6a/a5076a8e329676756ea9020215a9409a.jpg' },
           { id: 'ls2', name: 'Scrunchie', price: 199, img: 'https://i.pinimg.com/736x/d4/91/1a/d4911a7fa43b7c963267d240b3818ac3.jpg' },
@@ -4487,14 +4492,6 @@
       }
 
       if (checkoutMode === 'direct') {
-        const selection = validateProductDetailSelection();
-        if (!selection.isValid) {
-          const message = isScrunchieCategory(pdCategoryKey)
-            ? 'Please choose a color and size before placing your order.'
-            : 'Please choose a color before placing your order.';
-          showToast('Select options', message, 'warning');
-          return;
-        }
 
         const summary = getDirectOrderSummary();
         if (!summary) {
@@ -4666,14 +4663,6 @@
     // Add to Cart from product detail
     document.getElementById('pd-add-to-cart-btn').addEventListener('click', addToCart);
     document.getElementById('pd-order-now-btn').addEventListener('click', () => {
-      const selection = validateProductDetailSelection();
-      if (!selection.isValid) {
-        const message = isScrunchieCategory(pdCategoryKey)
-          ? 'Please choose a color and size before placing your order.'
-          : 'Please choose a color before placing your order.';
-        showToast('Select options', message, 'warning');
-        return;
-      }
 
       checkoutMode = 'direct';
       closeProductDetail();
