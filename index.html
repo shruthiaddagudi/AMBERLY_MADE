@@ -396,24 +396,35 @@
     }
 
     @keyframes storyFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     @media (max-width: 860px) {
       .about-inner {
         grid-template-columns: 1fr;
       }
+
       .about-text {
         text-align: center;
       }
+
       .about-text .section-eyebrow,
       .about-text .section-title {
         text-align: center;
       }
+
       .story-photo-col {
         order: -1;
       }
+
       .story-photo {
         width: min(240px, 60vw);
       }
@@ -1139,7 +1150,7 @@
       font-size: 0.7rem;
       font-weight: 700;
       color: #fff;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     }
 
     .selected-color-name {
@@ -1255,9 +1266,18 @@
       transform: translateY(0) scale(1);
     }
 
-    .pd-panel::-webkit-scrollbar { width: 5px; }
-    .pd-panel::-webkit-scrollbar-track { background: transparent; }
-    .pd-panel::-webkit-scrollbar-thumb { background: rgba(240, 213, 204, 0.2); border-radius: 10px; }
+    .pd-panel::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .pd-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .pd-panel::-webkit-scrollbar-thumb {
+      background: rgba(240, 213, 204, 0.2);
+      border-radius: 10px;
+    }
 
     .pd-header {
       display: flex;
@@ -1288,7 +1308,7 @@
       border-radius: 14px;
       object-fit: cover;
       flex-shrink: 0;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(240, 213, 204, 0.12);
     }
 
@@ -1616,6 +1636,7 @@
         padding: 24px 18px;
         border-radius: 20px;
       }
+
       .pd-product-img {
         width: 64px;
         height: 64px;
@@ -1880,10 +1901,21 @@
       animation: toastOut 0.24s ease forwards;
     }
 
-    .am-toast.success { border-left-color: var(--teal); }
-    .am-toast.error { border-left-color: #b34749; }
-    .am-toast.info { border-left-color: var(--navy); }
-    .am-toast.warning { border-left-color: var(--gold); }
+    .am-toast.success {
+      border-left-color: var(--teal);
+    }
+
+    .am-toast.error {
+      border-left-color: #b34749;
+    }
+
+    .am-toast.info {
+      border-left-color: var(--navy);
+    }
+
+    .am-toast.warning {
+      border-left-color: var(--gold);
+    }
 
     .am-toast .toast-title {
       display: flex;
@@ -1922,6 +1954,7 @@
         opacity: 0;
         transform: translateY(-8px) scale(0.98);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1933,6 +1966,7 @@
         opacity: 1;
         transform: translateY(0) scale(1);
       }
+
       to {
         opacity: 0;
         transform: translateY(-6px) scale(0.98);
@@ -1960,6 +1994,7 @@
         height: 46px;
       }
     }
+
     /* ============================================================
        CART DRAWER (slide from right)
        ============================================================ */
@@ -1973,10 +2008,12 @@
       pointer-events: none;
       transition: opacity 0.35s ease;
     }
+
     .cart-drawer-overlay.open {
       opacity: 1;
       pointer-events: all;
     }
+
     .cart-drawer {
       position: fixed;
       top: 0;
@@ -1994,9 +2031,11 @@
       flex-direction: column;
       box-shadow: -12px 0 60px rgba(0, 0, 0, 0.5);
     }
+
     .cart-drawer.open {
       transform: translateX(0);
     }
+
     .cart-drawer-header {
       display: flex;
       align-items: center;
@@ -2005,12 +2044,14 @@
       border-bottom: 1px solid rgba(240, 213, 204, 0.1);
       flex-shrink: 0;
     }
+
     .cart-drawer-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.8rem;
       color: #fff;
       font-weight: 500;
     }
+
     .cart-drawer-scroll {
       flex: 1;
       overflow-y: auto;
@@ -2018,9 +2059,20 @@
       scrollbar-width: thin;
       scrollbar-color: rgba(240, 213, 204, 0.2) transparent;
     }
-    .cart-drawer-scroll::-webkit-scrollbar { width: 5px; }
-    .cart-drawer-scroll::-webkit-scrollbar-track { background: transparent; }
-    .cart-drawer-scroll::-webkit-scrollbar-thumb { background: rgba(240, 213, 204, 0.2); border-radius: 10px; }
+
+    .cart-drawer-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .cart-drawer-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .cart-drawer-scroll::-webkit-scrollbar-thumb {
+      background: rgba(240, 213, 204, 0.2);
+      border-radius: 10px;
+    }
+
     .cart-drawer-footer {
       border-top: 1px solid rgba(240, 213, 204, 0.12);
       padding: 20px 28px 28px;
@@ -2036,6 +2088,7 @@
       gap: 2px;
       margin-top: 3px;
     }
+
     .cart-item-meta-row {
       font-family: 'Jost', sans-serif;
       font-size: 0.68rem;
@@ -2049,6 +2102,7 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .cart-summary-label {
       font-family: 'Jost', sans-serif;
       font-size: 0.78rem;
@@ -2057,12 +2111,14 @@
       color: rgba(240, 213, 204, 0.55);
       font-weight: 400;
     }
+
     .cart-summary-value {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
       color: rgba(240, 213, 204, 0.8);
       font-weight: 500;
     }
+
     .cart-summary-shipping {
       font-family: 'Jost', sans-serif;
       font-size: 0.72rem;
@@ -2070,16 +2126,19 @@
       font-style: italic;
       font-weight: 300;
     }
+
     .cart-summary-row.total {
       padding-top: 10px;
       border-top: 1px solid rgba(240, 213, 204, 0.1);
       margin-top: 4px;
     }
+
     .cart-summary-row.total .cart-summary-label {
       font-size: 0.85rem;
       color: rgba(240, 213, 204, 0.8);
       font-weight: 500;
     }
+
     .cart-summary-row.total .cart-summary-value {
       font-size: 1.35rem;
       color: var(--gold);
@@ -2091,11 +2150,13 @@
       padding: 60px 20px;
       display: none;
     }
+
     .cart-empty-icon {
       font-size: 3rem;
       margin-bottom: 16px;
       display: block;
     }
+
     .cart-empty-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.35rem;
@@ -2103,6 +2164,7 @@
       font-weight: 500;
       margin-bottom: 8px;
     }
+
     .cart-empty-text {
       font-family: 'Jost', sans-serif;
       font-size: 0.82rem;
@@ -2128,6 +2190,7 @@
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
+
     .continue-shopping-btn:hover {
       background: rgba(240, 213, 204, 0.08);
       border-color: rgba(240, 213, 204, 0.5);
@@ -2157,10 +2220,12 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
+
     .checkout-overlay.open {
       opacity: 1;
       pointer-events: all;
     }
+
     .checkout-modal {
       background: rgba(14, 4, 4, 0.96);
       backdrop-filter: blur(22px);
@@ -2177,39 +2242,56 @@
       scrollbar-width: thin;
       scrollbar-color: rgba(240, 213, 204, 0.2) transparent;
     }
+
     .checkout-overlay.open .checkout-modal {
       transform: translateY(0) scale(1);
     }
-    .checkout-modal::-webkit-scrollbar { width: 5px; }
-    .checkout-modal::-webkit-scrollbar-track { background: transparent; }
-    .checkout-modal::-webkit-scrollbar-thumb { background: rgba(240, 213, 204, 0.2); border-radius: 10px; }
+
+    .checkout-modal::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .checkout-modal::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .checkout-modal::-webkit-scrollbar-thumb {
+      background: rgba(240, 213, 204, 0.2);
+      border-radius: 10px;
+    }
+
     .checkout-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 28px;
     }
+
     .checkout-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.6rem;
       color: #fff;
       font-weight: 500;
     }
+
     .checkout-form {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
+
     .checkout-field-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
+
     .checkout-field {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
+
     .checkout-label {
       font-family: 'Jost', sans-serif;
       font-size: 0.68rem;
@@ -2218,9 +2300,11 @@
       text-transform: uppercase;
       color: rgba(240, 213, 204, 0.5);
     }
+
     .checkout-label .required {
       color: var(--rose);
     }
+
     .checkout-input {
       width: 100%;
       background: rgba(255, 255, 255, 0.05);
@@ -2234,18 +2318,22 @@
       outline: none;
       transition: border-color 0.2s, background 0.2s;
     }
+
     .checkout-input::placeholder {
       color: rgba(240, 213, 204, 0.25);
       font-style: italic;
     }
+
     .checkout-input:focus {
       border-color: rgba(201, 151, 44, 0.45);
       background: rgba(255, 255, 255, 0.08);
     }
+
     .checkout-textarea {
       resize: none;
       min-height: 72px;
     }
+
     .place-order-btn {
       width: 100%;
       padding: 14px 0;
@@ -2267,11 +2355,13 @@
       justify-content: center;
       gap: 8px;
     }
+
     .place-order-btn:hover {
       opacity: 0.9;
       transform: translateY(-2px);
       box-shadow: 0 8px 26px rgba(37, 168, 78, 0.4);
     }
+
     .back-to-cart-btn {
       width: 100%;
       padding: 11px 0;
@@ -2287,6 +2377,7 @@
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
+
     .back-to-cart-btn:hover {
       background: rgba(240, 213, 204, 0.06);
       border-color: rgba(240, 213, 204, 0.4);
@@ -2310,11 +2401,13 @@
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s, color 0.2s;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
     }
+
     .pd-add-to-cart-btn:hover {
       background: #fff;
       transform: translateY(-2px);
       box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4);
     }
+
     .pd-add-to-cart-btn.added {
       background: var(--teal);
       color: #fff;
@@ -2351,13 +2444,24 @@
         width: 100%;
         border-left: none;
       }
-      .cart-drawer-header { padding: 20px 20px 16px; }
-      .cart-drawer-scroll { padding: 16px 20px; }
-      .cart-drawer-footer { padding: 16px 20px 24px; }
+
+      .cart-drawer-header {
+        padding: 20px 20px 16px;
+      }
+
+      .cart-drawer-scroll {
+        padding: 16px 20px;
+      }
+
+      .cart-drawer-footer {
+        padding: 16px 20px 24px;
+      }
+
       .checkout-modal {
         padding: 28px 20px;
         border-radius: 20px;
       }
+
       .checkout-field-row {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -3190,9 +3294,12 @@
       </button>
       <button class="cart-icon-btn" id="cart-open-btn-mobile" aria-label="Open cart">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
         </svg>
         <span class="cart-badge" id="cart-badge-mobile">0</span>
       </button>
@@ -3218,9 +3325,12 @@
       <li>
         <button class="cart-icon-btn" id="cart-open-btn" aria-label="Open cart">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
           Cart
           <span class="cart-badge" id="cart-badge">0</span>
@@ -3257,7 +3367,7 @@
         <div class="item-card" data-category="hanging-decor">
           <div>
             <div class="item-name">Hanging Decor</div>
-            <div class="item-sub">Boho wall art</div>
+            <div class="item-sub">wall art</div>
           </div>
           <span class="item-card-arrow">&#8594;</span>
         </div>
@@ -3318,6 +3428,20 @@
           </div>
           <span class="item-card-arrow">&#8594;</span>
         </div>
+        <div class="item-card" data-category="crochet-bouquets">
+          <div>
+            <div class="item-name">Crochet Bouquets</div>
+            <div class="item-sub">Forever blooms, handcrafted</div>
+          </div>
+          <span class="item-card-arrow">&#8594;</span>
+        </div>
+        <div class="item-card" data-category="crochet-sling-bags">
+          <div>
+            <div class="item-name">Crochet Sling Bags</div>
+            <div class="item-sub">Boho style, yarn crafted</div>
+          </div>
+          <span class="item-card-arrow">&#8594;</span>
+        </div>
       </div>
     </div>
   </div>
@@ -3325,12 +3449,13 @@
   <section class="custom-creations-section" aria-label="Custom Creations">
     <div class="glass-panel reveal">
       <div class="custom-creations-heading">
-        <p class="custom-creations-eyebrow">✨ Custom Creations</p>
+        <p class="custom-creations-eyebrow"> Custom Creations</p>
         <h2 class="custom-creations-title">Can't Find Exactly What You're Looking For?</h2>
         <p class="custom-creations-subtitle">Your Idea. Our Yarn. One Handmade Masterpiece.</p>
       </div>
       <p class="custom-creations-copy">
-        Some ideas are too special to fit inside a catalogue. Whether you dream of a unique crochet gift, a custom color combination, a favorite flower, or a completely new design, we'd love to bring your vision to life.
+        Some ideas are too special to fit inside a catalogue. Whether you dream of a unique crochet gift, a custom color
+        combination, a favorite flower, or a completely new design, we'd love to bring your vision to life.
         At AmberlyMade, every custom order is handcrafted with patience, creativity, and love—made just for you.
       </p>
       <div class="custom-creations-grid">
@@ -3347,7 +3472,8 @@
         <div class="custom-card">
           <div class="custom-card-icon">🎁</div>
           <div class="custom-card-title">Perfect for Every Occasion</div>
-          <div class="custom-card-text">Create meaningful handmade gifts for birthdays, anniversaries, baby showers, or any special moment.</div>
+          <div class="custom-card-text">Create meaningful handmade gifts for birthdays, anniversaries, baby showers, or
+            any special moment.</div>
         </div>
         <div class="custom-card">
           <div class="custom-card-icon">🧶</div>
@@ -3356,9 +3482,10 @@
         </div>
       </div>
       <div class="custom-actions">
-        <button class="btn-primary custom-order-btn" id="custom-open-btn">✨ Create My Custom Order</button>
+        <button class="btn-primary custom-order-btn" id="custom-open-btn"> Create Your Custom Order</button>
       </div>
-      <p class="custom-note">Every custom creation is uniquely handmade. Pricing may vary depending on the design, size, materials, and complexity.</p>
+      <p class="custom-note">Every custom creation is uniquely handmade. Pricing may vary depending on the design, size,
+        materials, and complexity.</p>
     </div>
   </section>
 
@@ -3367,7 +3494,7 @@
 
       <!-- LEFT: text -->
       <div class="about-text">
-        <p class="section-eyebrow">✦ Our Story</p>
+        <p class="section-eyebrow"> Our Story</p>
         <h2 class="section-title">Amberly Made<br><em>by Shruthi &amp; Deepthi</em></h2>
 
         <p>What began as two friends sharing creativity, colors, and countless little moments slowly blossomed into
@@ -3376,14 +3503,18 @@
         <p>Between conversations, laughter, late-night ideas, and patient hands at work, Amberly Made was born &mdash; a
           space where simple materials are transformed into pieces filled with warmth, intention, and love.</p>
 
-        <p>Every creation tells a story. A story of friendship, imagination, and the joy of making something by hand in a
-          world that often moves too fast. We believe the most beautiful things aren&rsquo;t rushed; they&rsquo;re crafted
+        <p>Every creation tells a story. A story of friendship, imagination, and the joy of making something by hand in
+          a
+          world that often moves too fast. We believe the most beautiful things aren&rsquo;t rushed; they&rsquo;re
+          crafted
           thoughtfully, cherished deeply, and made with heart.</p>
 
-        <p>Amberly Made is more than a collection of handmade pieces. It&rsquo;s a reflection of who we are, what we love,
+        <p>Amberly Made is more than a collection of handmade pieces. It&rsquo;s a reflection of who we are, what we
+          love,
           and the happiness we hope to share with others.</p>
 
-        <p>Thank you for being a part of our journey and for celebrating the beauty of handmade creations with us. 🤍</p>
+        <p>Thank you for being a part of our journey and for celebrating the beauty of handmade creations with us. 🤍
+        </p>
 
         <p class="about-tagline">Made slowly. Made thoughtfully. Made with love.</p>
       </div>
@@ -3482,14 +3613,18 @@
       <div class="contact-info-row">
         <a href="tel:+919346908155" class="contact-info-link">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           +91 9346908155
         </a>
         <a href="mailto:amberlymade@gmail.com" class="contact-info-link">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
           amberlymade@gmail.com
         </a>
@@ -3548,23 +3683,29 @@
         <div class="size-selector-label">Choose Size</div>
         <div class="size-options">
           <div class="size-option selected" data-size="Medium" data-price="199" id="size-medium">
-            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <div class="size-radio">
+              <div class="size-radio-dot"></div>
+            </div>
             <span class="size-name">Medium</span>
             <span class="size-price">&#8377;199</span>
           </div>
           <div class="size-option" data-size="Large" data-price="259" id="size-large">
-            <div class="size-radio"><div class="size-radio-dot"></div></div>
+            <div class="size-radio">
+              <div class="size-radio-dot"></div>
+            </div>
             <span class="size-name">Large</span>
             <span class="size-price">&#8377;259</span>
           </div>
         </div>
       </div>
       <div class="customization-card">
-        <div class="customization-card-title">&#10024; Customization Available</div>
-        <div class="customization-card-text">Love a different color combination? We happily accept custom orders! Tell us your preferred colors, and we'll create a piece made just for you.</div>
+        <div class="customization-card-title">Customization Available</div>
+        <div class="customization-card-text">Love a different color combination? We happily accept custom orders! Tell
+          us your preferred colors, and we'll create a piece made just for you.</div>
       </div>
       <div class="custom-request-label">Custom Color Request (Optional)</div>
-      <input type="text" class="custom-request-input" id="pd-custom-req" placeholder="Example: Beige &amp; Sage Green" />
+      <input type="text" class="custom-request-input" id="pd-custom-req"
+        placeholder="Example: Beige &amp; Sage Green" />
       <!-- Product Details Card (Feature 1) -->
       <div class="pd-details-card">
         <div class="pd-details-title">Product Details</div>
@@ -3578,7 +3719,8 @@
         </div>
         <div class="pd-details-row">
           <span class="pd-details-icon">📦</span>
-          <div class="pd-details-text"><strong>Processing Time</strong>Made to Order — Ships within 3–5 business days.</div>
+          <div class="pd-details-text"><strong>Processing Time</strong>Made to Order — Ships within 3–5 business days.
+          </div>
         </div>
         <div class="pd-details-row">
           <span class="pd-details-icon">🧼</span>
@@ -3588,13 +3730,12 @@
           </div>
         </div>
         <div class="pd-details-row">
-          <span class="pd-details-icon">✨</span>
+          <span class="pd-details-icon"></span>
           <div class="pd-details-text"><strong>Customization</strong>Available on request.</div>
         </div>
       </div>
 
       <button class="pd-add-to-cart-btn" id="pd-add-to-cart-btn">Add to Cart</button>
-      <button class="pd-order-now-btn" id="pd-order-now-btn">🛍️ Order Now</button>
     </div>
   </div>
 
@@ -3672,13 +3813,15 @@
             <input type="tel" class="checkout-input" id="co-phone" placeholder="+91 9876543210" required />
           </div>
           <div class="checkout-field">
-            <label class="checkout-label" style="text-transform:none;letter-spacing:0.06em;">Email <span style="font-size:0.6rem;color:rgba(240,213,204,0.3);">(optional)</span></label>
+            <label class="checkout-label" style="text-transform:none;letter-spacing:0.06em;">Email <span
+                style="font-size:0.6rem;color:rgba(240,213,204,0.3);">(optional)</span></label>
             <input type="email" class="checkout-input" id="co-email" placeholder="you@email.com" />
           </div>
         </div>
         <div class="checkout-field">
           <label class="checkout-label">Delivery Address <span class="required">*</span></label>
-          <textarea class="checkout-input checkout-textarea" id="co-address" placeholder="House no, street, locality" required></textarea>
+          <textarea class="checkout-input checkout-textarea" id="co-address" placeholder="House no, street, locality"
+            required></textarea>
         </div>
         <div class="checkout-field-row">
           <div class="checkout-field">
@@ -3695,11 +3838,16 @@
           <input type="text" class="checkout-input" id="co-pin" placeholder="560001" required maxlength="6" />
         </div>
         <div class="checkout-field">
-          <label class="checkout-label" style="text-transform:none;letter-spacing:0.06em;">Order Notes <span style="font-size:0.6rem;color:rgba(240,213,204,0.3);">(optional)</span></label>
-          <textarea class="checkout-input checkout-textarea" id="co-notes" placeholder="Any special instructions..."></textarea>
+          <label class="checkout-label" style="text-transform:none;letter-spacing:0.06em;">Order Notes <span
+              style="font-size:0.6rem;color:rgba(240,213,204,0.3);">(optional)</span></label>
+          <textarea class="checkout-input checkout-textarea" id="co-notes"
+            placeholder="Any special instructions..."></textarea>
         </div>
         <button type="button" class="place-order-btn" id="place-order-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg>
           Place Order via WhatsApp
         </button>
         <button type="button" class="back-to-cart-btn" id="back-to-cart-btn">&#8592; Back to Cart</button>
@@ -3757,7 +3905,7 @@
           { id: 'ls5', name: 'Scrunchie', price: 199, img: 'https://i.pinimg.com/736x/1b/c2/20/1bc2206cd21bfdfac5da285c09c73909.jpg' }
         ]
       },
-      
+
       'kindle-case': {
         title: 'Kindle Case',
         products: [
@@ -3786,8 +3934,9 @@
           { id: 'fb3', name: 'Rose Bookmark', price: 199, img: 'https://i.pinimg.com/webp/736x/ee/1e/8e/ee1e8e669204e6a25db56246258768d9.webp' },
           { id: 'fb4', name: 'Sunflower Bookmark', price: 199, img: 'https://i.pinimg.com/webp/1200x/97/02/64/9702645ff14d6c6e3aae2d235c17917a.webp' },
           { id: 'fb5', name: 'Lavender Bookmark', price: 199, img: 'https://i.pinimg.com/1200x/47/83/e6/4783e6cbd9a7a0d7edf0ef0776450f7d.jpg' },
-          { id: 'fb6', name: 'Tulip Bookmark', price: 199, img: 'https://i.pinimg.com/1200x/1c/e6/95/1ce695a3a69451ee2722ceb46906e15f.jpg'}
-      ]},
+          { id: 'fb6', name: 'Tulip Bookmark', price: 199, img: 'https://i.pinimg.com/1200x/1c/e6/95/1ce695a3a69451ee2722ceb46906e15f.jpg' }
+        ]
+      },
       'keychains': {
         title: 'Keychains',
         products: [
@@ -3827,6 +3976,120 @@
           { id: 'cc3', name: 'Sunflower Claw Clip', price: 159, img: 'https://i.pinimg.com/736x/77/ce/7c/77ce7cd0f3e2acfea6073ff8bcdb59ea.jpg' },
           { id: 'cc4', name: 'Mini Sunflower Claw Clip', price: 129, img: 'https://i.pinimg.com/736x/26/67/63/266763b62b6d9caa374064fbbc8bc4d6.jpg' },
           { id: 'cc5', name: 'Butterfly Claw Clip', price: 159, img: 'https://i.pinimg.com/736x/32/ee/24/32ee24357f15aa3964ea4f3f5794634f.jpg' }
+        ]
+      },
+
+      /* ---- NEW: Crochet Bouquets ---- */
+      'crochet-bouquets': {
+        title: ' Crochet Bouquets',
+        products: [
+          {
+            id: 'cbq1',
+            name: ' Lily Bouquet',
+            price: 899,
+            img: 'https://i.pinimg.com/736x/69/8c/41/698c419940870b421646fc3f904936df.jpg',
+            details: {
+              handmade: 'Each bouquet is carefully handcrafted.',
+              care: '• Keep away from moisture.\n• Clean gently with a soft brush.\n• Indoor decorative use recommended.'
+            }
+          },
+          {
+            id: 'cbq2',
+            name: 'Tulip Bouquet',
+            price: 599,
+            img: 'https://i.pinimg.com/736x/18/85/78/18857864c88b26b97b6fd396105e3f22.jpg',
+            details: {
+              handmade: 'Each bouquet is carefully handcrafted.',
+              care: '• Keep away from moisture.\n• Clean gently with a soft brush.\n• Indoor decorative use recommended.'
+            }
+          },
+          {
+            id: 'cbq3',
+            name: 'Daisy Bouquet',
+            price: 699,
+            img: 'https://i.pinimg.com/736x/39/93/9e/39939e6eb7b927e394cef355eaf67801.jpg',
+            details: {
+              handmade: 'Each bouquet is carefully handcrafted.',
+              care: '• Keep away from moisture.\n• Clean gently with a soft brush.\n• Indoor decorative use recommended.'
+            }
+          },
+          {
+            id: 'cbq4',
+            name: 'Lavender Bouquet',
+            price: 799,
+            img: 'https://i.pinimg.com/736x/3d/c0/29/3dc0293a8922ec3e13c6799f186272ac.jpg',
+            details: {
+              handmade: 'Each bouquet is carefully handcrafted.',
+              care: '• Keep away from moisture.\n• Clean gently with a soft brush.\n• Indoor decorative use recommended.'
+            }
+          },
+          {
+            id: 'cbq5',
+            name: 'SunFlower Bouquet',
+            price: 699,
+            img: 'https://i.pinimg.com/736x/96/0d/af/960daf209b1182f8dc862c81d754b2bb.jpg',
+            details: {
+              handmade: 'Each bouquet is carefully handcrafted.',
+              care: '• Keep away from moisture.\n• Clean gently with a soft brush.\n• Indoor decorative use recommended.'
+            }
+          }
+        ]
+      },
+
+      /* ---- NEW: Crochet Sling Bags ---- */
+      'crochet-sling-bags': {
+        title: ' Crochet Sling Bags',
+        products: [
+          {
+            id: 'csb1',
+            name: 'Blossom Bloom Phone Sling Bag',
+            price: 999,
+            img: 'https://i.pinimg.com/736x/e1/8d/70/e18d70b88a36b3953988831c111873e7.jpg',
+            details: {
+              handmade: 'Lovingly handcrafted with premium cotton yarn.',
+              care: '• Hand wash only.\n• Dry flat in shade.\n• Do not bleach.'
+            }
+          },
+          {
+            id: 'csb2',
+            name: 'Sunflower Sling Bag',
+            price: 899,
+            img: 'https://i.pinimg.com/1200x/95/0b/3f/950b3ffdcc6c4c98b5b7a74267c14c43.jpg',
+            details: {
+              handmade: 'Lovingly handcrafted with premium cotton yarn.',
+              care: '• Hand wash only.\n• Dry flat in shade.\n• Do not bleach.'
+            }
+          },
+          {
+            id: 'csb3',
+            name: 'Granny Square Sling Bag',
+            price: 999,
+            img: 'https://i.pinimg.com/736x/27/f3/fd/27f3fdbba9cedd4a656b90db3db64eaf.jpg',
+            details: {
+              handmade: 'Lovingly handcrafted with premium cotton yarn.',
+              care: '• Hand wash only.\n• Dry flat in shade.\n• Do not bleach.'
+            }
+          },
+          {
+            id: 'csb4',
+            name: 'Crochet Sling Bag',
+            price: 799,
+            img: 'https://i.pinimg.com/vwebp/736x/e7/4a/b9/e74ab9a128f2444157129e6951128e3c.webp',
+            details: {
+              handmade: 'Lovingly handcrafted with premium cotton yarn.',
+              care: '• Hand wash only.\n• Dry flat in shade.\n• Do not bleach.'
+            }
+          },
+          {
+            id: 'csb5',
+            name: 'Daisy Granny Square Sling Bag',
+            price: 899,
+            img: 'https://i.pinimg.com/736x/7e/68/49/7e6849a227cef1a3dac40500f5ca3b68.jpg',
+            details: {
+              handmade: 'Lovingly handcrafted with premium cotton yarn.',
+              care: '• Hand wash only.\n• Dry flat in shade.\n• Do not bleach.'
+            }
+          }
         ]
       }
     };
@@ -4053,6 +4316,23 @@
         });
       });
 
+      // Update Product Details card dynamically for category-specific details
+      const pdDetailsCard = document.querySelector('.pd-details-card');
+      if (pdDetailsCard) {
+        const handmadeRow = pdDetailsCard.querySelector('.pd-details-row:nth-child(2) .pd-details-text');
+        const careSpan = pdDetailsCard.querySelector('.pd-details-care');
+        if (categoryKey === 'crochet-bouquets') {
+          if (handmadeRow) handmadeRow.innerHTML = '<strong>Handmade</strong>Each bouquet is carefully handcrafted.';
+          if (careSpan) careSpan.innerHTML = '• Keep away from moisture.<br>• Clean gently with a soft brush.<br>• Indoor decorative use recommended.';
+        } else if (categoryKey === 'crochet-sling-bags') {
+          if (handmadeRow) handmadeRow.innerHTML = '<strong>Handmade</strong>Lovingly handcrafted with premium cotton yarn.';
+          if (careSpan) careSpan.innerHTML = '• Hand wash only.<br>• Dry flat in shade.<br>• Do not bleach.';
+        } else {
+          if (handmadeRow) handmadeRow.innerHTML = '<strong>Handmade</strong>Every piece is carefully handmade with love.';
+          if (careSpan) careSpan.innerHTML = '• Hand wash only<br>• Do not bleach<br>• Dry flat in shade';
+        }
+      }
+
       // Open overlay
       document.getElementById('pd-overlay').classList.add('open');
     }
@@ -4065,7 +4345,7 @@
         pdSelectedSize = opt.dataset.size;
         pdCurrentPrice = parseInt(opt.dataset.price, 10);
         document.getElementById('pd-price').innerHTML = '&#8377;' + pdCurrentPrice;
-        try { localStorage.setItem('am_scrunchie_size', pdSelectedSize); } catch(e) {}
+        try { localStorage.setItem('am_scrunchie_size', pdSelectedSize); } catch (e) { }
         showToast('Size Updated', `${pdSelectedSize} selected.`, 'success');
       });
     });
@@ -4196,11 +4476,11 @@
       try {
         const saved = localStorage.getItem('am_wishlist_v2');
         wishlist = saved ? JSON.parse(saved) : [];
-      } catch(e) { wishlist = []; }
+      } catch (e) { wishlist = []; }
     }
 
     function saveWishlist() {
-      try { localStorage.setItem('am_wishlist_v2', JSON.stringify(wishlist)); } catch(e) {}
+      try { localStorage.setItem('am_wishlist_v2', JSON.stringify(wishlist)); } catch (e) { }
     }
 
     function updateWishBadge() {
@@ -4282,11 +4562,11 @@
       try {
         const saved = localStorage.getItem('am_cart_v1');
         cart = saved ? JSON.parse(saved) : [];
-      } catch(e) { cart = []; }
+      } catch (e) { cart = []; }
     }
 
     function saveCart() {
-      try { localStorage.setItem('am_cart_v1', JSON.stringify(cart)); } catch(e) {}
+      try { localStorage.setItem('am_cart_v1', JSON.stringify(cart)); } catch (e) { }
     }
 
     function getCartCount() {
@@ -4747,13 +5027,13 @@
 
     // Override updateWishBadge and updateCartBadge to also sync mobile
     const _origUpdateWishBadge = updateWishBadge;
-    updateWishBadge = function() {
+    updateWishBadge = function () {
       _origUpdateWishBadge();
       syncMobileBadges();
     };
 
     const _origUpdateCartBadge = updateCartBadge;
-    updateCartBadge = function() {
+    updateCartBadge = function () {
       _origUpdateCartBadge();
       syncMobileBadges();
     };
