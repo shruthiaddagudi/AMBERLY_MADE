@@ -3278,6 +3278,391 @@
         width: min(180px, 50vw);
       }
     }
+
+    /* ============================================================
+       AMBERLY ASSISTANT CHATBOT STYLES
+       ============================================================ */
+
+    /* --- Floating launch button --- */
+    .am-chat-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9998;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--wine) 0%, var(--rose) 100%);
+      color: var(--blush);
+      box-shadow: 0 4px 24px rgba(107, 39, 55, 0.45), 0 1px 4px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s ease;
+      outline: none;
+    }
+    .am-chat-btn:hover {
+      transform: scale(1.11);
+      box-shadow: 0 6px 32px rgba(107, 39, 55, 0.55), 0 2px 8px rgba(0,0,0,0.22);
+    }
+    .am-chat-btn:focus-visible {
+      outline: 2px solid var(--blush);
+      outline-offset: 3px;
+    }
+    .am-chat-btn__icon { display: block; transition: opacity 0.18s, transform 0.18s; }
+    .am-chat-btn__close {
+      display: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      font-weight: 300;
+      color: var(--blush);
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .am-chat-btn--open .am-chat-btn__icon { display: none; }
+    .am-chat-btn--open .am-chat-btn__close { display: block; }
+    /* Pulse badge on button */
+    .am-chat-badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 18px;
+      height: 18px;
+      background: var(--gold);
+      border-radius: 50%;
+      font-size: 0.6rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: am-badge-pulse 2.2s ease infinite;
+    }
+    .am-chat-btn--open .am-chat-badge { display: none; }
+    @keyframes am-badge-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.85; }
+    }
+
+    /* --- Chat window --- */
+    .am-chat-window {
+      position: fixed;
+      bottom: 98px;
+      right: 28px;
+      z-index: 9997;
+      width: 375px;
+      max-width: calc(100vw - 24px);
+      height: 560px;
+      max-height: calc(100dvh - 120px);
+      background: #1b0d11;
+      border: 1px solid rgba(192, 96, 74, 0.18);
+      border-radius: 20px;
+      box-shadow: 0 20px 64px rgba(0,0,0,0.55), 0 2px 12px rgba(107,39,55,0.22);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(18px) scale(0.97);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), opacity 0.22s ease;
+    }
+    .am-chat-window--open {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* --- Header --- */
+    .am-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, var(--wine) 0%, #4a1c26 100%);
+      flex-shrink: 0;
+    }
+    .am-chat-header__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(240,213,204,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blush);
+    }
+    .am-chat-header__text { flex: 1; min-width: 0; }
+    .am-chat-header__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--blush);
+      letter-spacing: 0.04em;
+    }
+    .am-chat-header__sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: rgba(240,213,204,0.6);
+      letter-spacing: 0.05em;
+      margin-top: 1px;
+    }
+    .am-chat-header__close {
+      background: none;
+      border: none;
+      color: rgba(240,213,204,0.65);
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 6px;
+      line-height: 1;
+      transition: color 0.15s, background 0.15s;
+      flex-shrink: 0;
+    }
+    .am-chat-header__close:hover { color: var(--blush); background: rgba(240,213,204,0.1); }
+    .am-chat-header__close:focus-visible { outline: 2px solid var(--blush); }
+
+    /* --- Message body --- */
+    .am-chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+    .am-chat-body::-webkit-scrollbar { width: 4px; }
+    .am-chat-body::-webkit-scrollbar-track { background: transparent; }
+    .am-chat-body::-webkit-scrollbar-thumb { background: rgba(192,96,74,0.3); border-radius: 4px; }
+
+    /* --- Message rows --- */
+    .am-msg {
+      display: flex;
+      animation: am-msg-in 0.22s ease both;
+    }
+    .am-msg--user { justify-content: flex-end; }
+    .am-msg--bot  { justify-content: flex-start; }
+    @keyframes am-msg-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Bubbles --- */
+    .am-bubble {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 300;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+    .am-bubble--user {
+      background: linear-gradient(135deg, var(--wine) 0%, var(--rose) 100%);
+      color: var(--blush);
+      border-bottom-right-radius: 4px;
+    }
+    .am-bubble--bot {
+      background: rgba(240,213,204,0.07);
+      border: 1px solid rgba(240,213,204,0.11);
+      color: rgba(240,213,204,0.88);
+      border-bottom-left-radius: 4px;
+    }
+    .am-bubble--bot strong { color: var(--blush); font-weight: 500; }
+    .am-bubble--bot em     { color: rgba(240,213,204,0.75); font-style: italic; }
+
+    /* --- Typing indicator --- */
+    .am-typing {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 0;
+    }
+    .am-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 0.5;
+      animation: am-bounce 1.1s ease infinite;
+    }
+    .am-typing span:nth-child(2) { animation-delay: 0.18s; }
+    .am-typing span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes am-bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.45; }
+      40%           { transform: translateY(-5px); opacity: 1; }
+    }
+
+    /* --- Quick action buttons --- */
+    .am-quick-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 4px 0 2px;
+      animation: am-msg-in 0.22s ease both;
+    }
+    .am-quick-btn {
+      background: rgba(240,213,204,0.07);
+      border: 1px solid rgba(192,96,74,0.35);
+      color: var(--blush);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, transform 0.14s;
+      white-space: nowrap;
+    }
+    .am-quick-btn:hover {
+      background: rgba(192,96,74,0.22);
+      border-color: var(--rose);
+      transform: translateY(-1px);
+    }
+    .am-quick-btn:focus-visible { outline: 2px solid var(--blush); }
+    .am-quick-btn--primary {
+      background: linear-gradient(135deg, var(--wine) 0%, var(--rose) 100%);
+      border-color: transparent;
+      color: var(--blush);
+      font-weight: 500;
+    }
+    .am-quick-btn--primary:hover { filter: brightness(1.1); }
+
+    /* --- Product cards in chat --- */
+    .am-product-cards-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      animation: am-msg-in 0.25s ease both;
+    }
+    .am-product-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      background: rgba(240,213,204,0.05);
+      border: 1px solid rgba(192,96,74,0.2);
+      border-radius: 14px;
+      padding: 10px 12px;
+      transition: border-color 0.18s;
+    }
+    .am-product-card:hover { border-color: rgba(192,96,74,0.45); }
+    .am-product-card__img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0;
+      border: 1px solid rgba(240,213,204,0.1);
+    }
+    .am-product-card__info { flex: 1; min-width: 0; }
+    .am-product-card__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--blush);
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .am-product-card__price {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin: 2px 0 7px;
+    }
+    .am-product-card__btn {
+      background: transparent;
+      border: 1px solid rgba(192,96,74,0.5);
+      color: var(--rose);
+      border-radius: 12px;
+      padding: 4px 11px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: 0.04em;
+    }
+    .am-product-card__btn:hover {
+      background: var(--rose);
+      color: #fff;
+    }
+    .am-product-card__btn:focus-visible { outline: 2px solid var(--blush); }
+
+    /* --- Footer / input area --- */
+    .am-chat-footer {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 10px 12px 12px;
+      border-top: 1px solid rgba(240,213,204,0.08);
+      background: rgba(240,213,204,0.03);
+      flex-shrink: 0;
+    }
+    .am-chat-input {
+      flex: 1;
+      background: rgba(240,213,204,0.06);
+      border: 1px solid rgba(192,96,74,0.25);
+      border-radius: 14px;
+      color: var(--blush);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 300;
+      padding: 9px 13px;
+      resize: none;
+      outline: none;
+      line-height: 1.5;
+      min-height: 38px;
+      max-height: 90px;
+      transition: border-color 0.18s;
+    }
+    .am-chat-input::placeholder { color: rgba(240,213,204,0.35); }
+    .am-chat-input:focus { border-color: rgba(192,96,74,0.55); }
+    .am-chat-send {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, var(--wine) 0%, var(--rose) 100%);
+      color: var(--blush);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s, filter 0.15s;
+    }
+    .am-chat-send:hover { transform: scale(1.08); filter: brightness(1.12); }
+    .am-chat-send:focus-visible { outline: 2px solid var(--blush); }
+
+    /* --- Mobile responsive --- */
+    @media (max-width: 480px) {
+      .am-chat-btn {
+        bottom: 80px; /* lift above mobile cart/wish bar */
+        right: 16px;
+        width: 52px;
+        height: 52px;
+      }
+      .am-chat-window {
+        bottom: 144px;
+        right: 8px;
+        left: 8px;
+        width: auto;
+        max-width: none;
+        max-height: calc(100dvh - 160px);
+        border-radius: 16px;
+      }
+    }
+    @media (max-width: 360px) {
+      .am-bubble { max-width: 92%; font-size: 0.8rem; }
+      .am-quick-btn { font-size: 0.74rem; padding: 5px 11px; }
+    }
+
   </style>
 </head>
 
@@ -3522,7 +3907,7 @@
       <!-- RIGHT: photo -->
       <div class="story-photo-col">
         <div class="story-photo-frame">
-          <img src="our-story.jpg" alt="Shruthi and Deepthi — the hearts behind AmberlyMade" class="story-photo" />
+          <img src="our-story1.jpeg" alt="Shruthi and Deepthi — the hearts behind AmberlyMade" class="story-photo" />
         </div>
         <span class="story-photo-caption">Shruthi &amp; Deepthi ✦</span>
       </div>
@@ -3855,6 +4240,72 @@
       </form>
     </div>
   </div>
+
+  <!-- ===================================================
+       AMBERLY ASSISTANT CHATBOT HTML
+       =================================================== -->
+
+  <!-- Floating launch button -->
+  <button
+    id="am-chat-btn"
+    class="am-chat-btn"
+    aria-label="Open Amberly Assistant chatbot"
+    aria-expanded="false"
+    title="Chat with Amberly Assistant"
+  >
+    <!-- Sparkle + message icon -->
+    <svg class="am-chat-btn__icon" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="currentColor"/>
+      <path d="M8.5 11.5L10 9l1.5 2.5L14 10l-1.5 2.5L15 14h-2.5L11 16.5 9.5 14H7l2-2L7.5 9.5l1 2z" fill="white" opacity="0.9"/>
+    </svg>
+    <span class="am-chat-btn__close" aria-hidden="true">&times;</span>
+    <span class="am-chat-badge" aria-label="New">✦</span>
+  </button>
+
+  <!-- Chat window -->
+  <div
+    id="am-chat-window"
+    class="am-chat-window"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Amberly Assistant"
+  >
+    <!-- Header -->
+    <div class="am-chat-header">
+      <div class="am-chat-header__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="currentColor"/>
+          <path d="M8.5 11.5L10 9l1.5 2.5L14 10l-1.5 2.5L15 14h-2.5L11 16.5 9.5 14H7l2-2L7.5 9.5l1 2z" fill="white" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="am-chat-header__text">
+        <div class="am-chat-header__name">AmberlyMade Assistant</div>
+        <div class="am-chat-header__sub">Your little crochet shopping buddy</div>
+      </div>
+      <button id="am-chat-close" class="am-chat-header__close" aria-label="Close chatbot">&times;</button>
+    </div>
+
+    <!-- Message body -->
+    <div id="am-chat-body" class="am-chat-body" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+    <!-- Input area -->
+    <div class="am-chat-footer">
+      <textarea
+        id="am-chat-input"
+        class="am-chat-input"
+        placeholder="Ask me about our crochet creations..."
+        rows="1"
+        maxlength="400"
+        aria-label="Type your message"
+      ></textarea>
+      <button id="am-chat-send" class="am-chat-send" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
 
   <script>
     /* ============================================================
@@ -5047,7 +5498,506 @@
     loadCart();
     updateCartBadge();
     syncMobileBadges();
+
+    /* ============================================================
+       AMBERLY ASSISTANT CHATBOT
+       ============================================================ */
+    (function () {
+      'use strict';
+
+      /* ---- helpers to access existing site functions ---- */
+      function _openProduct(productId, categoryKey) {
+        if (typeof openProductDetail === 'function') {
+          // Close chatbot first for clean UX
+          closeChatWindow();
+          openProductDetail(productId, categoryKey);
+        }
+      }
+
+      function _openCustom() {
+        if (typeof openCustomRequestModal === 'function') {
+          closeChatWindow();
+          openCustomRequestModal();
+        } else {
+          // fallback: scroll to section
+          closeChatWindow();
+          document.querySelector('.custom-creations-section') && document.querySelector('.custom-creations-section').scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      function _scrollToCatalogue() {
+        closeChatWindow();
+        const el = document.getElementById('catalogue');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      /* ---- flatten all products for easy search ---- */
+      function getAllProducts() {
+        const all = [];
+        Object.entries(PRODUCT_DATA).forEach(([catKey, catData]) => {
+          catData.products.forEach(p => {
+            all.push({ ...p, categoryKey: catKey, categoryTitle: catData.title });
+          });
+        });
+        return all;
+      }
+
+      /* ---- STATE ---- */
+      let chatOpen = false;
+      let hasGreeted = false;
+      let typingTimer = null;
+
+      /* ---- DOM REFS ---- */
+      const chatBtn   = document.getElementById('am-chat-btn');
+      const chatWin   = document.getElementById('am-chat-window');
+      const chatClose = document.getElementById('am-chat-close');
+      const chatBody  = document.getElementById('am-chat-body');
+      const chatInput = document.getElementById('am-chat-input');
+      const chatSend  = document.getElementById('am-chat-send');
+
+      /* ---- open / close ---- */
+      function openChatWindow() {
+        chatOpen = true;
+        chatBtn.classList.add('am-chat-btn--open');
+        chatWin.classList.add('am-chat-window--open');
+        chatBtn.setAttribute('aria-expanded', 'true');
+        if (!hasGreeted) { hasGreeted = true; showWelcome(); }
+        setTimeout(() => chatInput.focus(), 350);
+      }
+
+      function closeChatWindow() {
+        chatOpen = false;
+        chatBtn.classList.remove('am-chat-btn--open');
+        chatWin.classList.remove('am-chat-window--open');
+        chatBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      chatBtn.addEventListener('click', () => chatOpen ? closeChatWindow() : openChatWindow());
+      chatClose.addEventListener('click', closeChatWindow);
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && chatOpen) closeChatWindow();
+      });
+
+      /* ---- message helpers ---- */
+      function scrollBottom() {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      function addUserMsg(text) {
+        const div = document.createElement('div');
+        div.className = 'am-msg am-msg--user';
+        div.innerHTML = `<div class="am-bubble am-bubble--user">${escapeHtml(text)}</div>`;
+        chatBody.appendChild(div);
+        requestAnimationFrame(scrollBottom);
+      }
+
+      function addBotMsg(html, extraClass = '') {
+        const div = document.createElement('div');
+        div.className = 'am-msg am-msg--bot' + (extraClass ? ' ' + extraClass : '');
+        div.innerHTML = `<div class="am-bubble am-bubble--bot">${html}</div>`;
+        chatBody.appendChild(div);
+        requestAnimationFrame(scrollBottom);
+      }
+
+      function showTyping() {
+        removeTyping();
+        const div = document.createElement('div');
+        div.className = 'am-msg am-msg--bot am-typing-row';
+        div.id = 'am-typing-indicator';
+        div.innerHTML = '<div class="am-bubble am-bubble--bot"><span class="am-typing"><span></span><span></span><span></span></span></div>';
+        chatBody.appendChild(div);
+        scrollBottom();
+      }
+
+      function removeTyping() {
+        const t = document.getElementById('am-typing-indicator');
+        if (t) t.remove();
+      }
+
+      function botReply(htmlFn, delay = 900) {
+        showTyping();
+        typingTimer = setTimeout(() => {
+          removeTyping();
+          htmlFn();
+          scrollBottom();
+        }, delay);
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      /* ---- quick-action buttons ---- */
+      function makeQuickBtns(actions) {
+        const wrap = document.createElement('div');
+        wrap.className = 'am-quick-btns';
+        actions.forEach(({ label, onClick }) => {
+          const b = document.createElement('button');
+          b.className = 'am-quick-btn';
+          b.textContent = label;
+          b.addEventListener('click', () => {
+            wrap.remove(); // dismiss button row
+            onClick();
+          });
+          wrap.appendChild(b);
+        });
+        chatBody.appendChild(wrap);
+        scrollBottom();
+      }
+
+      /* ---- welcome ---- */
+      function showWelcome() {
+        addBotMsg('Hi! Welcome to AmberlyMade \uD83E\uDDF6<br><br>I\'m here to help you find something handmade and special.<br><br>What are you looking for?');
+        setTimeout(() => {
+          makeQuickBtns([
+            { label: '🛍 Browse Products',  onClick: () => handleInput('show me all products') },
+            { label: '🎁 Find a Gift',       onClick: () => handleInput('gift ideas') },
+            { label: '🎨 Custom Order',      onClick: () => handleInput('custom order') },
+            { label: '💬 Ask a Question',    onClick: () => { chatInput.focus(); } }
+          ]);
+        }, 300);
+      }
+
+      /* ---- product recommendation card ---- */
+      function makeProductCard(product) {
+        const div = document.createElement('div');
+        div.className = 'am-product-card';
+        div.innerHTML = `
+          <img class="am-product-card__img" src="${product.img}" alt="${escapeHtml(product.name)}" loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'">
+          <div class="am-product-card__info">
+            <div class="am-product-card__name">${escapeHtml(product.name.trim())}</div>
+            <div class="am-product-card__price">&#8377;${product.price}</div>
+            <button class="am-product-card__btn" data-pid="${product.id}" data-cat="${product.categoryKey}">View Product</button>
+          </div>`;
+        div.querySelector('.am-product-card__btn').addEventListener('click', () => {
+          _openProduct(product.id, product.categoryKey);
+        });
+        return div;
+      }
+
+      function showProductCards(products, limit = 3) {
+        const shown = products.slice(0, limit);
+        const wrap = document.createElement('div');
+        wrap.className = 'am-product-cards-row';
+        shown.forEach(p => wrap.appendChild(makeProductCard(p)));
+        chatBody.appendChild(wrap);
+        scrollBottom();
+      }
+
+      /* ---- INTENT ENGINE ---- */
+      function parseIntent(text) {
+        const t = text.toLowerCase().trim();
+        // Greeting
+        if (/^(hi|hello|hey|hii|howdy|namaste|good morning|good afternoon|good evening|sup|yo|hola)/.test(t)) return 'greeting';
+        // Farewell
+        if (/(bye|goodbye|take care|thanks|thank you|thnx|thx|ok bye|see you)/.test(t)) return 'farewell';
+        // Price budget
+        if (/under|below|less than|budget|cheap|within|max/.test(t) && /\d/.test(t)) return 'budget';
+        // Cheapest
+        if (/cheapest|lowest price|most affordable|least expensive/.test(t)) return 'cheapest';
+        // Most expensive
+        if (/most expensive|costliest|expensive|premium|high.end/.test(t)) return 'expensive';
+        // Category browse
+        if (/sling bag|bag/.test(t) && !/charm/.test(t)) return 'cat:crochet-sling-bags';
+        if (/bouquet|flowers?|floral/.test(t)) return 'cat:crochet-bouquets';
+        if (/scrunchie|hair tie/.test(t)) return 'cat:large-scrunchie';
+        if (/keychain|key chain/.test(t)) return 'cat:keychains';
+        if (/earpod|earphone|airpod|pouch.*ear/.test(t)) return 'cat:earpods-case';
+        if (/kindle|book sleeve|book case/.test(t)) return 'cat:kindle-case';
+        if (/bookmark|book mark/.test(t) && !/flower/.test(t)) return 'cat:bookmark';
+        if (/flower bookmark|floral bookmark/.test(t)) return 'cat:flower-bookmarks';
+        if (/wall hang|hanging decor|decor/.test(t)) return 'cat:hanging-decor';
+        if (/phone charm|phone strap/.test(t)) return 'cat:phone-charms';
+        if (/bag charm/.test(t)) return 'cat:bag-charms';
+        if (/claw clip|hair clip/.test(t)) return 'cat:claw-clips';
+        // All products
+        if (/all product|show product|what do you (have|sell|offer|make)|browse|catalogue|catalog|collection/.test(t)) return 'all-products';
+        // Gift
+        if (/gift|present|anniversary|birthday|friend|sister|mother|mom|dad/.test(t)) return 'gift';
+        // Custom order
+        if (/custom|customis|customi[sz]|bespoke|personaliz|personalise|your own|make.*for me/.test(t)) return 'custom';
+        // Care
+        if (/care|wash|clean|maintain|how.*keep|maintenance/.test(t)) return 'care';
+        // Material / made of
+        if (/material|made (of|from|with)|yarn|cotton|fabric|what is it made/.test(t)) return 'material';
+        // Processing time
+        if (/how long|time|days|delivery|dispatch|when|how.*get|process/.test(t)) return 'processing';
+        // Colors
+        if (/colou?r|shade|hue|available in|tint/.test(t)) return 'colors';
+        // Sizes
+        if (/size|dimension|big|small|large|medium|fit/.test(t)) return 'sizes';
+        // How to order
+        if (/how.*order|place.*order|buy|purchase|how.*add|how.*cart|ordering|steps/.test(t)) return 'how-to-order';
+        // Cart
+        if (/cart|add to cart|basket/.test(t)) return 'cart-info';
+        // Wishlist
+        if (/wishlist|wish list|save|favourite|favorite/.test(t)) return 'wishlist-info';
+        // Price of specific product (generic)
+        if (/price|cost|how much|rate|fees|charge/.test(t)) return 'price-info';
+        return 'unknown';
+      }
+
+      /* ---- extract budget from text ---- */
+      function extractBudget(text) {
+        const m = text.match(/(\d[\d,]*)/);
+        if (!m) return null;
+        return parseInt(m[1].replace(/,/g, ''), 10);
+      }
+
+      /* ---- RESPONSE HANDLERS ---- */
+      function handleInput(rawText) {
+        if (!rawText.trim()) return;
+        addUserMsg(rawText);
+        const intent = parseIntent(rawText);
+        respond(intent, rawText);
+      }
+
+      function respond(intent, raw) {
+        if (intent === 'greeting') {
+          botReply(() => {
+            addBotMsg('Hi there! \uD83C\uDF38 I\'m AmberlyMade Assistant, your little crochet shopping buddy. How can I help you today?');
+            makeQuickBtns([
+              { label: '🛍 Browse Products', onClick: () => handleInput('show me all products') },
+              { label: '🎨 Custom Order',     onClick: () => handleInput('custom order') }
+            ]);
+          }, 700);
+          return;
+        }
+        if (intent === 'farewell') {
+          botReply(() => addBotMsg('Thank you for visiting AmberlyMade 🧶 It was lovely chatting with you! Come back anytime for something handmade and special. 🌸'), 700);
+          return;
+        }
+        if (intent === 'all-products') {
+          const all = getAllProducts();
+          botReply(() => {
+            addBotMsg(`We have <strong>${all.length} handmade creations</strong> across ${Object.keys(PRODUCT_DATA).length} categories! Here are a few highlights:`);
+            // Show 1 product per category, max 6
+            const highlights = Object.values(PRODUCT_DATA).slice(0, 6).map(c => c.products[0]);
+            const enriched = highlights.map(p => {
+              const catKey = Object.entries(PRODUCT_DATA).find(([k, v]) => v.products.some(pr => pr.id === p.id))?.[0] || '';
+              const catTitle = PRODUCT_DATA[catKey]?.title || '';
+              return { ...p, categoryKey: catKey, categoryTitle: catTitle };
+            });
+            showProductCards(enriched, 6);
+            makeQuickBtns([
+              { label: '🎀 Sling Bags',    onClick: () => handleInput('show me sling bags') },
+              { label: '💐 Bouquets',      onClick: () => handleInput('show me bouquets') },
+              { label: '🔖 Bookmarks',     onClick: () => handleInput('show me bookmarks') },
+              { label: '🛒 Browse All',    onClick: _scrollToCatalogue }
+            ]);
+          });
+          return;
+        }
+        if (intent.startsWith('cat:')) {
+          const catKey = intent.replace('cat:', '');
+          const catData = PRODUCT_DATA[catKey];
+          if (!catData) { respond('unknown', raw); return; }
+          botReply(() => {
+            addBotMsg(`Here are our <strong>${catData.title.trim()}</strong> — all handcrafted with love 🧶`);
+            const enriched = catData.products.map(p => ({ ...p, categoryKey: catKey, categoryTitle: catData.title }));
+            showProductCards(enriched, catData.products.length);
+            makeQuickBtns([
+              { label: '🎨 Customise One',  onClick: () => handleInput('custom order') },
+              { label: '🛒 Browse All',     onClick: _scrollToCatalogue }
+            ]);
+          });
+          return;
+        }
+        if (intent === 'gift') {
+          const all = getAllProducts();
+          const giftPicks = all.filter(p => p.price <= 599).slice(0, 6);
+          botReply(() => {
+            if (giftPicks.length === 0) {
+              addBotMsg('Every AmberlyMade piece makes a wonderful gift! 🎁 Let me show you some of our creations:');
+              showProductCards(all.slice(0, 3), 3);
+            } else {
+              addBotMsg('Every AmberlyMade piece makes a wonderful gift! 🎁 Here are some beautiful options:');
+              showProductCards(giftPicks, 3);
+            }
+            makeQuickBtns([
+              { label: '🎀 Under ₹300',   onClick: () => handleInput('show me products under 300') },
+              { label: '🎀 Under ₹500',   onClick: () => handleInput('show me products under 500') },
+              { label: '🎨 Custom Gift',   onClick: () => handleInput('custom order') }
+            ]);
+          });
+          return;
+        }
+        if (intent === 'budget') {
+          const budget = extractBudget(raw);
+          if (!budget) { respond('unknown', raw); return; }
+          const all = getAllProducts();
+          const matches = all.filter(p => p.price <= budget);
+          botReply(() => {
+            if (matches.length === 0) {
+              addBotMsg(`I couldn't find anything under ₹${budget} right now, but you can explore our full collection. 🧶`);
+              makeQuickBtns([{ label: '🛒 Browse Collection', onClick: _scrollToCatalogue }]);
+            } else {
+              addBotMsg(`Here are ${matches.length > 3 ? 'some' : matches.length} AmberlyMade pieces under ₹${budget}:`);
+              showProductCards(matches, 3);
+              if (matches.length > 3) {
+                makeQuickBtns([{ label: `See more under ₹${budget}`, onClick: _scrollToCatalogue }]);
+              }
+            }
+          });
+          return;
+        }
+        if (intent === 'cheapest') {
+          const all = getAllProducts();
+          const sorted = all.slice().sort((a, b) => a.price - b.price);
+          botReply(() => {
+            addBotMsg(`Our most affordable pieces start from just <strong>₹${sorted[0].price}</strong>! 🌸 Here are our lowest-priced items:`);
+            showProductCards(sorted, 3);
+          });
+          return;
+        }
+        if (intent === 'expensive') {
+          const all = getAllProducts();
+          const sorted = all.slice().sort((a, b) => b.price - a.price);
+          botReply(() => {
+            addBotMsg('Looking for our premium pieces? Here are some of our finest creations 🌟');
+            showProductCards(sorted, 3);
+          });
+          return;
+        }
+        if (intent === 'custom') {
+          botReply(() => {
+            addBotMsg('Absolutely! We love bringing custom ideas to life. \uD83C\uDFA8<br><br>Tell us what you have in mind \u2014 a special colour, a unique design, or a personalised gift \u2014 and we\'ll handcraft it just for you.');
+            const wrap = document.createElement('div');
+            wrap.className = 'am-quick-btns';
+            const b = document.createElement('button');
+            b.className = 'am-quick-btn am-quick-btn--primary';
+            b.textContent = '🎨 Create Your Custom Order';
+            b.addEventListener('click', _openCustom);
+            wrap.appendChild(b);
+            chatBody.appendChild(wrap);
+            scrollBottom();
+          });
+          return;
+        }
+        if (intent === 'care') {
+          botReply(() => {
+            addBotMsg(`<strong>Care Instructions 🧶</strong><br><br>For most of our crochet creations:<br>• Hand wash only in cold water<br>• Do not bleach<br>• Dry flat in the shade<br><br>For our <em>Crochet Bouquets</em>:<br>• Keep away from moisture<br>• Clean gently with a soft dry brush<br>• Indoor decorative use recommended`);
+            makeQuickBtns([{ label: '🛒 Browse Products', onClick: _scrollToCatalogue }]);
+          });
+          return;
+        }
+        if (intent === 'material') {
+          botReply(() => {
+            addBotMsg(`<strong>Materials 🪡</strong><br><br>Our pieces are handcrafted using:<br>• <strong>Premium cotton yarn</strong> — soft, durable, and skin-friendly<br>• High-quality crochet threads for intricate designs<br><br>Each item is made with love and attention to detail. 🌸<br><br>For product-specific details, feel free to open any product card — or contact us through Custom Order for more information.`);
+            makeQuickBtns([{ label: '🛒 Browse Products', onClick: _scrollToCatalogue }]);
+          });
+          return;
+        }
+        if (intent === 'processing') {
+          botReply(() => {
+            addBotMsg(`<strong>Processing Time ⏱</strong><br><br>Since everything at AmberlyMade is lovingly handmade to order:<br>• Standard items: <strong>3–7 business days</strong><br>• Custom creations: <strong>7–14 business days</strong> depending on complexity<br><br>For exact timelines on your specific order, please reach out through our Custom Creations section and we'll let you know! 🌸`);
+            makeQuickBtns([
+              { label: '🎨 Custom Order',   onClick: () => handleInput('custom order') },
+              { label: '🛒 Browse Products', onClick: _scrollToCatalogue }
+            ]);
+          });
+          return;
+        }
+        if (intent === 'colors') {
+          botReply(() => {
+            addBotMsg(`<strong>Colour Options 🎨</strong><br><br>Most AmberlyMade pieces can be made in your choice of colour, including:<br><br>Blush Pink · Sage Green · Dusty Rose · Cream · Lavender · Honey Gold · Midnight Navy · Warm Beige · Teal · Wine<br><br>Simply open any product, select your colour, and add it to your cart. Or let us know your preference through a Custom Order! 🌸`);
+            makeQuickBtns([
+              { label: '🛒 Browse Products', onClick: _scrollToCatalogue },
+              { label: '🎨 Custom Order',    onClick: () => handleInput('custom order') }
+            ]);
+          });
+          return;
+        }
+        if (intent === 'sizes') {
+          botReply(() => {
+            addBotMsg(`<strong>Sizes ✂️</strong><br><br>Most of our accessories are one-size. Our <strong>Scrunchies</strong> are available in two sizes:<br>• Medium — ₹199<br>• Large — ₹259<br><br>For bags and other items, dimensions may vary — feel free to ask us via Custom Order for specific measurements.`);
+            makeQuickBtns([
+              { label: '🛍 View Scrunchies', onClick: () => handleInput('show me scrunchies') },
+              { label: '🎨 Custom Order',    onClick: () => handleInput('custom order') }
+            ]);
+          });
+          return;
+        }
+        if (intent === 'how-to-order') {
+          botReply(() => {
+            addBotMsg('<strong>How to Order 🛒</strong><br><br>It\'s simple and easy!<br><br>1. Browse our collection and find something you love<br>2. Click <em>View Product</em> to open the product detail<br>3. Choose your preferred colour (and size if applicable)<br>4. Click <em>Add to Cart</em> or <em>Order Now</em><br>5. Fill in your details and place your order via WhatsApp 💬<br><br>We\'ll then confirm your order and get crafting! 🌸');
+            const wrap = document.createElement('div');
+            wrap.className = 'am-quick-btns';
+            const b = document.createElement('button');
+            b.className = 'am-quick-btn am-quick-btn--primary';
+            b.textContent = '🛒 Browse Products';
+            b.addEventListener('click', _scrollToCatalogue);
+            wrap.appendChild(b);
+            chatBody.appendChild(wrap);
+            scrollBottom();
+          });
+          return;
+        }
+        if (intent === 'cart-info') {
+          botReply(() => {
+            addBotMsg('To add something to your cart 🛒<br><br>Open any product, select your colour, then click <strong>Add to Cart</strong>. Your items will be saved and you can checkout whenever you\'re ready!');
+            makeQuickBtns([{ label: '🛒 Browse Products', onClick: _scrollToCatalogue }]);
+          });
+          return;
+        }
+        if (intent === 'wishlist-info') {
+          botReply(() => {
+            addBotMsg('You can save products to your Wishlist 🤍 by clicking the heart icon on any product card. Your wishlist is accessible from the top navigation bar.');
+            makeQuickBtns([{ label: '🛒 Browse Products', onClick: _scrollToCatalogue }]);
+          });
+          return;
+        }
+        if (intent === 'price-info') {
+          const all = getAllProducts();
+          const min = Math.min(...all.map(p => p.price));
+          const max = Math.max(...all.map(p => p.price));
+          botReply(() => {
+            addBotMsg(`Our handmade creations are priced from <strong>₹${min}</strong> to <strong>₹${max}</strong>. 🌸<br><br>Use the catalogue to browse by category, or let me know your budget and I'll find the perfect piece for you!`);
+            makeQuickBtns([
+              { label: '💰 Under ₹200', onClick: () => handleInput('products under 200') },
+              { label: '💰 Under ₹500', onClick: () => handleInput('products under 500') },
+              { label: '🛒 Browse All',  onClick: _scrollToCatalogue }
+            ]);
+          });
+          return;
+        }
+        // unknown
+        botReply(() => {
+          addBotMsg('I\'m still learning about AmberlyMade 🧶<br><br>I can help you with our <strong>products, prices, colours, customisation, care instructions, and ordering</strong>. Try asking me something like:<br><br>• "Show me sling bags"<br>• "Products under ₹500"<br>• "How do I order?"<br>• "Can I customise this?"');
+          makeQuickBtns([
+            { label: '🛒 Browse Products', onClick: _scrollToCatalogue },
+            { label: '🎨 Custom Order',    onClick: () => handleInput('custom order') }
+          ]);
+        });
+      }
+
+      /* ---- send handler ---- */
+      function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        chatInput.value = '';
+        chatInput.style.height = 'auto';
+        handleInput(text);
+      }
+
+      chatSend.addEventListener('click', sendMessage);
+      chatInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+      });
+
+      // auto-resize textarea
+      chatInput.addEventListener('input', () => {
+        chatInput.style.height = 'auto';
+        chatInput.style.height = Math.min(chatInput.scrollHeight, 90) + 'px';
+      });
+
+    }());
   </script>
+
+
+
 </body>
 
 </html>
